@@ -1,5 +1,5 @@
-import { checkPrime } from "crypto";
-import { useState } from "react";
+
+import {FormEvent, useState } from "react";
 
 
 
@@ -9,13 +9,18 @@ export function UserLogin(){
     const [errors, setErrors] = useState<{[name: string]:string}>({})
     const [touched, setTouched] = useState<{[name: string]:boolean}>({})
 
-    let login = false
+  
 
-    function submit(){
+    function submit(e:FormEvent){
+        let userNameOK = false
+        let userPasswordOK = false
         if ((userName === "marcell" || userName === "vitor")
             && userPassword === "password"){
-            login = true
+                userNameOK = check(userName,required,userName)
+                userPasswordOK = check(userPassword,required,userPassword)
         }
+        if (userNameOK && userPasswordOK)
+        console.log("Entrou")
     }
     function setError(name: string, error: string) {
         setErrors(prevErrors => ({ ...prevErrors, [name]: error }))
@@ -63,11 +68,17 @@ export function UserLogin(){
             <div className="error">{ errors['userPassword'] }</div>
         </div>
     )
+    const button = <div>
+    <div>
+      <input type="submit" value="Entrar" />
+    </div>
+  </div>
 
     return(
         <form onSubmit={submit}>
             {userNameElm}
             {userPasswordElm}
+            {button}
         </form>
     )
 }
