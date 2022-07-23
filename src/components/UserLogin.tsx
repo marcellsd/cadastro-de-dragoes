@@ -60,7 +60,7 @@ export function UserLogin(){
     const userPasswordElm = (
         <div>
             <label>Senha: </label>
-            <input type="text" value={userPassword} onChange={e=>changeUserPassword(e.target.value)}
+            <input type="password" value={userPassword} onChange={e=>changeUserPassword(e.target.value)}
             onBlur={e=>check(e.target.value, required, 'userPassword')}
             />
             <div className="error">{ errors['userPassword'] }</div>
