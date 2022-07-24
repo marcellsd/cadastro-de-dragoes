@@ -1,5 +1,7 @@
 
 import {FormEvent, useState } from "react";
+import { TextField } from "@mui/material";
+import './UserLogin.css'
 
 
 
@@ -7,6 +9,8 @@ export function UserLogin(){
     const [userName, setUserName] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
     const [errors, setErrors] = useState<{[name: string]:string}>({})
+
+    
 
     function submit(e:FormEvent){
         e.preventDefault()
@@ -50,18 +54,29 @@ export function UserLogin(){
 
     const userNameElm = (
         <div>
-            <label>Nome do usuário: </label>
-            <input type="text" value={userName} onChange={e=>changeUserName(e.target.value)}
-            onBlur={e=>check(e.target.value, required, 'userName')}
+            <TextField
+                id="UserNameInput"
+                type="text"
+                value={userName} 
+                onChange={e=>changeUserName(e.target.value)}
+                onBlur={e=>check(e.target.value, required, 'userName')}
+                variant="standard"
+                label="Nome do usuário"
             />
             <div className="error">{ errors['userName'] }</div>
         </div>
     )
     const userPasswordElm = (
         <div>
-            <label>Senha: </label>
-            <input type="password" value={userPassword} onChange={e=>changeUserPassword(e.target.value)}
+            
+            <TextField 
+            id="UserPasswordInput"
+            label= "Senha"
+            type="password" 
+            value={userPassword} 
+            onChange={e=>changeUserPassword(e.target.value)}
             onBlur={e=>check(e.target.value, required, 'userPassword')}
+            variant="standard"
             />
             <div className="error">{ errors['userPassword'] }</div>
         </div>
@@ -82,3 +97,4 @@ export function UserLogin(){
         </form>
     )
 }
+

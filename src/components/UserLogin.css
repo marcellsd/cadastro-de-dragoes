@@ -1,0 +1,8 @@
+
+.error {
+  font-style: italic;
+  font-size: 10pt;
+  color: red;
+  margin-left: var(--label-width);
+  height: 20pt;
+}
