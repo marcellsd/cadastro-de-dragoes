@@ -1,6 +1,6 @@
 
 import {FormEvent, useState } from "react";
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import './UserLogin.css'
 
 
@@ -25,7 +25,7 @@ export function UserLogin(){
         console.log("Entrou")
         setError('login', '')
         } else{
-         setError('login','Nome de usuário ou senha incorretos!')   
+         setError('login','Nome de usuário e/ou senha incorretos!')   
         }
 
     }
@@ -83,18 +83,22 @@ export function UserLogin(){
     )
     const button = <div>
     <div>
-      <input type="submit" value="Entrar" />
+      <Button onClick={submit}>Entrar</Button>
     </div>
     <div className="error">{ errors['login'] }</div>
     
   </div>
 
     return(
-        <form onSubmit={submit}>
-            {userNameElm}
-            {userPasswordElm}
-            {button}
-        </form>
+        <div className = "login">
+            <form onSubmit={submit}>
+                <div><h2>Login</h2></div>
+                {userNameElm}
+                {userPasswordElm}
+                {button}
+            </form>
+        </div>
+
     )
 }
 
