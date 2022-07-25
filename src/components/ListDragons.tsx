@@ -4,6 +4,9 @@ import axios from "axios";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { CardActions, IconButton } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function ListDragons() {
     const [dragonsList, setDragonsList] = useState([])
@@ -41,6 +44,14 @@ export default function ListDragons() {
                                     Tipo: {dragon['type']}
                                 </Typography>
                             </CardContent>
+                            <CardActions>
+                                <IconButton aria-label="Delete dragon">
+                                    <DeleteIcon/>
+                                </IconButton>
+                                <IconButton aria-label="Edit dragon">
+                                    <EditIcon/>
+                                </IconButton>
+                            </CardActions>
                         </Card>
                     </div>
                 ))}
