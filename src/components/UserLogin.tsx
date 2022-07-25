@@ -1,8 +1,9 @@
-
-import {FormEvent, useState } from "react";
-import { Button, TextField } from "@mui/material";
 import './UserLogin.css'
 
+import {FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { Button, TextField } from "@mui/material";
 
 
 export function UserLogin(){
@@ -10,7 +11,7 @@ export function UserLogin(){
     const [userPassword, setUserPassword] = useState<string>('');
     const [errors, setErrors] = useState<{[name: string]:string}>({})
 
-    
+    const navigate = useNavigate();    
 
     function submit(e:FormEvent){
         e.preventDefault()
@@ -22,8 +23,9 @@ export function UserLogin(){
                 userPasswordOK = check(userPassword,required,'userPassword')
         }
         if (userNameOK && userPasswordOK){
-        console.log("Entrou")
-        setError('login', '')
+            console.log("Entrou");
+            navigate('/home');
+            setError('login', '');
         } else{
          setError('login','Nome de usuário e/ou senha incorretos!')   
         }
@@ -68,7 +70,6 @@ export function UserLogin(){
     )
     const userPasswordElm = (
         <div>
-            
             <TextField 
             id="UserPasswordInput"
             label= "Senha"
@@ -86,8 +87,7 @@ export function UserLogin(){
       <Button onClick={submit}>Entrar</Button>
     </div>
     <div className="error">{ errors['login'] }</div>
-    
-  </div>
+    </div>
 
     return(
         <div className = "login">

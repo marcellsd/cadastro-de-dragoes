@@ -1,13 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import { Route, Routes } from "react-router-dom";
+
 import { UserLogin } from './components/UserLogin';
-import ListDragons from './components/ListDragons';
+import  Home from './components/Home';
 
 function App() {
   return (
-    <UserLogin></UserLogin>
-    //<ListDragons></ListDragons>
+    <Routes>
+        <Route path="*" element={<UserLogin/>}/>
+        <Route path="/home" element={<Home/>}/>
+    </Routes>
   );
 }
 

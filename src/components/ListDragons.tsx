@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-export default function App() {
+export default function ListDragons() {
     const [dragonsList, setDragonsList] = useState([])
 
     async function getDragonsList() {
