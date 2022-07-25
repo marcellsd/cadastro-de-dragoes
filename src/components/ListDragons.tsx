@@ -45,11 +45,11 @@ export default function ListDragons() {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <IconButton aria-label="Delete dragon">
-                                    <DeleteIcon/>
-                                </IconButton>
                                 <IconButton aria-label="Edit dragon">
                                     <EditIcon/>
+                                </IconButton>
+                                <IconButton aria-label="Delete dragon">
+                                    <DeleteIcon/>
                                 </IconButton>
                             </CardActions>
                         </Card>
