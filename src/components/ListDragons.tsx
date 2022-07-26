@@ -7,30 +7,36 @@ import Typography from '@mui/material/Typography';
 import { CardActions, IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { useNavigate } from "react-router-dom";
 
-interface Dragon{
-    createdAt: Date,
-    name: string,
+interface Dragon {
+    id: string
+    name: string
     type: string
-    histories: [],
-    id: string,
+    histories: []
 }
 
 export default function ListDragons() {
     const [dragonsList, setDragonsList] = useState<Dragon[]>([]) 
+
     async function getDragonsList() {
         const { data } = await axios.get("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
         setDragonsList(data)
+    }
+
+    const navigate = useNavigate();
+
+    function toEdit(id: string){
+        navigate('/edit/' + id)
     }
 
     useEffect(() => {
         getDragonsList();
     }, []);
 
-    async function deletarDragao(id: number) {
-        // Comentei para não deletar o dragão da api antes de conseguirmos adicionar com o post
-        await axios.delete("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id)
-        //const { data } = await axios.get("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id)
+    async function deletarDragao(id: string) {
+        await axios.delete("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id);
+        window.location.reload();
     }
 
     return (
@@ -48,13 +54,15 @@ export default function ListDragons() {
                                 </Typography>
                                 <Typography variant="h5" component="div">
                                     Tipo: {dragon.type}
+                                </Typography><Typography variant="h5" component="div">
+                                    Detalhes: {dragon.histories}
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <IconButton aria-label="Edit dragon">
+                                <IconButton onClick={() => toEdit(dragon.id)} aria-label="Edit dragon">
                                     <EditIcon/>
                                 </IconButton>
-                                <IconButton onClick={() => deletarDragao(parseInt(dragon.id))} aria-label="Delete dragon">
+                                <IconButton onClick={() => deletarDragao(dragon.id)} aria-label="Delete dragon">
                                     <DeleteIcon/>
                                 </IconButton>
                             </CardActions>
