@@ -23,9 +23,8 @@ export function UserLogin(){
                 userPasswordOK = check(userPassword,required,'userPassword')
         }
         if (userNameOK && userPasswordOK){
-            console.log("Entrou");
-            navigate('/home');
-            setError('login', '');
+            navigate('/home')
+            setError('login', '')
         } else{
          setError('login','Nome de usuário e/ou senha incorretos!')   
         }

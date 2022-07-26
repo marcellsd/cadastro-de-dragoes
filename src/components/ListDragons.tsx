@@ -17,8 +17,7 @@ interface Dragon{
 }
 
 export default function ListDragons() {
-    const [dragonsList, setDragonsList] = useState<Dragon[]>([])
-
+    const [dragonsList, setDragonsList] = useState<Dragon[]>([]) 
     async function getDragonsList() {
         const { data } = await axios.get("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
         setDragonsList(data)
@@ -30,8 +29,8 @@ export default function ListDragons() {
 
     async function deletarDragao(id: number) {
         // Comentei para não deletar o dragão da api antes de conseguirmos adicionar com o post
-        // await axios.delete("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id)
-        const { data } = await axios.get("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id)
+        await axios.delete("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id)
+        //const { data } = await axios.get("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id)
     }
 
     return (
