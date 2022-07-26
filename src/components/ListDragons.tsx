@@ -8,8 +8,16 @@ import { CardActions, IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
+interface Dragon{
+    createdAt: Date,
+    name: string,
+    type: string
+    histories: [],
+    id: string,
+}
+
 export default function ListDragons() {
-    const [dragonsList, setDragonsList] = useState([])
+    const [dragonsList, setDragonsList] = useState<Dragon[]>([])
 
     async function getDragonsList() {
         const { data } = await axios.get("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
@@ -21,17 +29,10 @@ export default function ListDragons() {
     }, []);
 
     async function deletarDragao(id: number) {
+        // Comentei para não deletar o dragão da api antes de conseguirmos adicionar com o post
         // await axios.delete("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id)
         const { data } = await axios.get("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id)
-        console.log(data)
     }
-
-    const dragons = dragonsList?.map((dragon, index) => (
-        <span
-            key={index}>
-            {dragon}
-        </span>
-    ))
 
     return (
         <div>
@@ -41,20 +42,20 @@ export default function ListDragons() {
                         <Card variant="outlined" sx={{ minWidth: 275 }}>
                             <CardContent>
                                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                    Id: {dragon['id']}
+                                    Id: {dragon.id}
                                 </Typography>
                                 <Typography variant="h5" component="div">
-                                    Nome: {dragon['name']}
+                                    Nome: {dragon.name}
                                 </Typography>
                                 <Typography variant="h5" component="div">
-                                    Tipo: {dragon['type']}
+                                    Tipo: {dragon.type}
                                 </Typography>
                             </CardContent>
                             <CardActions>
                                 <IconButton aria-label="Edit dragon">
                                     <EditIcon/>
                                 </IconButton>
-                                <IconButton onClick={() => deletarDragao(dragon['id'])} aria-label="Delete dragon">
+                                <IconButton onClick={() => deletarDragao(parseInt(dragon.id))} aria-label="Delete dragon">
                                     <DeleteIcon/>
                                 </IconButton>
                             </CardActions>
