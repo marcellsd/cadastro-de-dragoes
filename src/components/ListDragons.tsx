@@ -18,7 +18,13 @@ export default function ListDragons() {
 
     useEffect(() => {
         getDragonsList();
-      }, []);
+    }, []);
+
+    async function deletarDragao(id: number) {
+        // await axios.delete("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id)
+        const { data } = await axios.get("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id)
+        console.log(data)
+    }
 
     const dragons = dragonsList?.map((dragon, index) => (
         <span
@@ -48,7 +54,7 @@ export default function ListDragons() {
                                 <IconButton aria-label="Edit dragon">
                                     <EditIcon/>
                                 </IconButton>
-                                <IconButton aria-label="Delete dragon">
+                                <IconButton onClick={() => deletarDragao(dragon['id'])} aria-label="Delete dragon">
                                     <DeleteIcon/>
                                 </IconButton>
                             </CardActions>
