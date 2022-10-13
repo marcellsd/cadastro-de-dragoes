@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# App de Cadastro de Dragões para disciplina de Frameworks em Javascript
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
