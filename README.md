@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Endereço do teste para desenvolvedor: https://github.com/WoopSicredi/jobs/issues/6
+Address for the developer test: https://github.com/WoopSicredi/jobs/issues/6
 
 ## Available Scripts
 
